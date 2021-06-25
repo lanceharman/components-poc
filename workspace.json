@@ -1,0 +1,129 @@
+{
+  "version": 2,
+  "projects": {
+    "nx-components": {
+      "root": "apps/nx-components",
+      "sourceRoot": "apps/nx-components/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/nx-components",
+            "index": "apps/nx-components/src/index.html",
+            "main": "apps/nx-components/src/main.tsx",
+            "polyfills": "apps/nx-components/src/polyfills.ts",
+            "tsConfig": "apps/nx-components/tsconfig.app.json",
+            "assets": [
+              "apps/nx-components/src/favicon.ico",
+              "apps/nx-components/src/assets"
+            ],
+            "styles": ["apps/nx-components/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/nx-components/src/environments/environment.ts",
+                  "with": "apps/nx-components/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "nx-components:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "nx-components:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/nx-components/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/nx-components"],
+          "options": {
+            "jestConfig": "apps/nx-components/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nx-components-e2e": {
+      "root": "apps/nx-components-e2e",
+      "sourceRoot": "apps/nx-components-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/nx-components-e2e/cypress.json",
+            "tsConfig": "apps/nx-components-e2e/tsconfig.e2e.json",
+            "devServerTarget": "nx-components:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "nx-components:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/nx-components-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true,
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true
+      }
+    }
+  },
+  "defaultProject": "nx-components"
+}
