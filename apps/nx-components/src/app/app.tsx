@@ -2,10 +2,15 @@ import styles from './app.module.css';
 
 import { ReactComponent as Logo } from './logo.svg';
 import star from './star.svg';
+import { Button } from '@components-poc/button';
+import { Mock } from '@components-poc/mock';
 
 export function App() {
   return (
     <div className={styles.app}>
+      <Mock copy={'testing nx component generation'}>
+        <div>some children</div>
+      </Mock>
       <header className="flex">
         <Logo width="75" height="75" />
         <h1>Welcome to nx-components!</h1>

@@ -19,6 +19,12 @@
     }
   },
   "projects": {
+    "button": {
+      "tags": []
+    },
+    "mock": {
+      "tags": []
+    },
     "nx-components": {
       "tags": []
     },

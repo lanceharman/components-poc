@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@components-poc/button": ["libs/button/src/index.ts"],
+      "@components-poc/mock": ["libs/mock/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

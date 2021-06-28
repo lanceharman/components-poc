@@ -1,6 +1,86 @@
 {
   "version": 2,
   "projects": {
+    "button": {
+      "root": "libs/button",
+      "sourceRoot": "libs/button/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/button",
+            "tsConfig": "libs/button/tsconfig.lib.json",
+            "project": "libs/button/package.json",
+            "entryFile": "libs/button/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/button/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/button/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/button"],
+          "options": {
+            "jestConfig": "libs/button/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mock": {
+      "root": "libs/mock",
+      "sourceRoot": "libs/mock/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/mock",
+            "tsConfig": "libs/mock/tsconfig.lib.json",
+            "project": "libs/mock/package.json",
+            "entryFile": "libs/mock/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/mock/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mock/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mock"],
+          "options": {
+            "jestConfig": "libs/mock/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "nx-components": {
       "root": "apps/nx-components",
       "sourceRoot": "apps/nx-components/src",
